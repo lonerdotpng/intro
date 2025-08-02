@@ -9,9 +9,6 @@
       position: relative;
       overflow-y: auto;
     }
-    html {
-  scroll-behavior: smooth;
-}
 
     .h1 {
       color: #108bff;
@@ -28,15 +25,28 @@
 
     .card {
       top: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      transition: all 0.3s ease;
       background: rgba(31, 24, 24, 0.8);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       padding: 20px;
       margin: 20px;
       width: 300px;
       height: 400px;
       position: fixed;
       animation: fade-in 0.7s ease-in-out;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 30px 8px #c5879c, 0 0 60px 13px #68a8a4;
+      border-color: #cc7894;
+    }
+
+    .card.highlighted {
+      box-shadow: 0 0 40px 12px #ff6b9d, 0 0 80px 20px #4ecdc4;
+      border-color: #ff6b9d;
+      transform: scale(1.02);
     }
 
     .pfp {
@@ -111,6 +121,13 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
+    nav li:not(:first-child).active {
+      color: #fff;
+      background: rgba(255, 90, 145, 0.3);
+      border-color: #ff568e;
+      box-shadow: 0 0 20px rgba(255, 90, 145, 0.5);
+    }
+
     nav li:not(:first-child)::before {
       content: '';
       position: absolute;
@@ -123,7 +140,8 @@
       transform: translateX(-50%);
     }
 
-    nav li:not(:first-child):hover::before {
+    nav li:not(:first-child):hover::before,
+    nav li:not(:first-child).active::before {
       width: 100%;
     }
 
@@ -439,15 +457,17 @@
       width: 300px;
       height: 180px;
       position: fixed;
-      opacity: 0; /* Start with opacity 0 */
-      animation: fade-in 0.7s ease-in-out forwards; /* Add fade-in animation */
-      z-index: 10;
+      opacity: 1;
+      transform: translateY(20px);
+      animation: fade-in 0.7s ease-in-out;
+      transition: all 0.3s ease;
     }
 
-    .contact.highlight {
-    animation: fade-in 0.7s ease-in-out forwards, highlight-pulse 1.5s ease-in-out 0.7s forwards;
-    border: 3px solid rgba(255, 107, 107, 0.8);
-}
+    .contact.highlighted {
+      box-shadow: 0 0 30px 10px rgba(255, 107, 157, 0.6), 0 0 60px 15px rgba(78, 205, 196, 0.4);
+      border: 2px solid #ff6b9d;
+      transform: translateY(15px) scale(1.02);
+    }
 
     .nyan-card {
       background: rgba(31, 24, 24, 0.8);
@@ -549,7 +569,7 @@
       transform: translateY(-50%);
       width: 0;
       height: 20px;
-      background: linear-gradient(90deg, transparent, #ff6b9d, #ffd93d, #6bcf7f, #4d9de0, #9b59b6);
+      background: linear-gradient(90deg, transparent, #c46484, #ffd93d, #6bcf7f, #4d9de0, #aa69c4);
       border-radius: 10px;
       transition: width 0.3s ease;
     }
@@ -592,17 +612,136 @@
       rotate: 270deg;
     }
 
-    @keyframes highlight-pulse {
-    0% { 
-        box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
-        opacity: 1;
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
     }
-    50% { 
-        box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
-        opacity: 1;
+
+    /* Section markers */
+    #home-section {
+      position: absolute;
+      top: 0;
+      height: 1px;
+      width: 1px;
+      visibility: hidden;
     }
-    100% { 
-        box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
-        opacity: 1;
+
+    /* Overlay styles */
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
-}
+
+    /* Modal content styles */
+    #overlay > div {
+      background: rgba(24, 21, 21, 0.897);
+      padding: 30px;
+      border-radius: 10px;
+      width: 80vw;
+      height: 40vw;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    /* Close button styles */
+    #closeBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background 0.5s, transform 0.5s;
+    }
+
+    #closeBtn:hover {
+      background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+      transform: scale(1.08);
+    }
+
+    /* Responsive modal */
+    @media (max-width: 700px) {
+      #overlay > div {
+        width: 95vw;
+        height: auto;
+        padding: 15px;
+      }
+    }
+
+    .button-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .button-top .button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgb(20, 20, 20);
+            border: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
+            cursor: pointer;
+            transition-duration: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .button-top .svgIcon {
+            width: 12px;
+            transition-duration: 0.3s;
+        }
+
+        .button-top .svgIcon path {
+            fill: white;
+        }
+
+        .button-top .button:hover {
+            width: 140px;
+            border-radius: 50px;
+            background-color: rgb(181, 160, 255);
+            transition-duration: 0.3s;
+        }
+
+        .button-top .button:hover .svgIcon {
+            transition-duration: 0.3s;
+            transform: translateY(-300%);
+        }
+
+        .button-top .button::before {
+            position: absolute;
+            bottom: 20px;
+            content: "Back to Top";
+            color: white;
+            font-size: 0px;
+            transition-duration: 0.3s;
+        }
+
+        .button-top .button:hover::before {
+            font-size: 13px;
+            opacity: 1;
+            bottom: unset;
+            transition-duration: 0.3s;
+        }
