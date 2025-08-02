@@ -5,25 +5,30 @@
   <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>portfolio</title>
+  
 </head>
-
 
 <body
   style="height: 1000px; background: linear-gradient(45deg, rgba(65, 89, 208, 1.000) 0.000%, rgba(200, 79, 192, 1.000) 50.000%, rgba(255, 205, 112, 1.000) 100.000%);">
+  
+  <!-- Section marker for Home -->
+  <div id="home-section"></div>
+  
   <nav>
     <ul>
       <li>PK</li>
-      <li onclick="scrollToContact(); highlightContact();">sw</li>
-      <li onclick="scrollToSkillTree(); highlightSkillTree();">skill tree</li>
-      <li>Projects</li>
-      <li>Contact</li>
+      <li onclick="navigateTo('home')" class="nav-item active">Home</li>
+      <li onclick="navigateTo('about')" class="nav-item">About</li>
+      <li onclick="navigateTo('projects')" class="nav-item">Projects</li>
+      <li onclick="navigateTo('contact')" class="nav-item">Contact</li>
     </ul>
   </nav>
- <div class="glass">
-    <div class="card">
+
+  <div class="glass">
+    <div class="card" id="about-section">
       <div><img src="pfp.png" class="pfp"></div>
-      <h1 class="h1">parth kashelkar<br>rookie dev <br>
+      <h1 class="h1">Parth Kashelkar<br>Rookie Dev<br>
         <p>loves coding*</p>
       </h1>
       <ul class="example-2">
@@ -38,7 +43,7 @@
           <div class="tooltip">github</div>
         </li>
         <li class="icon-content">
-          <a data-social="telegram" aria-label="Telegram" href="https://telegram.org/">
+          <a data-social="telegram" aria-label="Telegram" href="https://t.me/ParthkXD" target="_blank">
             <div class="filled"></div>
             <svg viewBox="0 0 100 100" version="1.1">
               <path fill="currentColor"
@@ -49,13 +54,14 @@
           <div class="tooltip">Telegram</div>
         </li>
       </ul>
+      <div id="mouse-hov"></div>
     </div>
 
-    <div class="contact" id="contact">
+    <div class="contact" id="contact-section">
       <h2 style="color: white; text-align: center;">Contact Me</h2>
       <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);"></div>
       <p style="color: rgba(255, 255, 255, 0.8); text-align: center; margin-bottom: 20px;">Feel free to reach out!</p>
-      <a href="mailto:youremail@gmail.com" style="
+      <a href="mailto:your.email@example.com" style="
     display: inline-block;
     width: calc(100% - 20px);
     padding: 15px 10px;
@@ -82,7 +88,7 @@
       </div>
     </div>
     <div class="skilltree">
-      <h1 class="h1" id="skilltree">SKILL TREE</h1>
+      <h1 class="h1">SKILL TREE</h1>
     </div>
 
     <div class="info">
@@ -133,8 +139,27 @@
     </div>
   </div>
 
+  <!-- Add this overlay HTML just before the closing </body> tag -->
+<div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999;">
+  <div style="background:rgba(24, 21, 21, 0.897); padding:30px; border-radius:10px; width: 80vw; height: 40vw; position:relative;">
+    <button id="closeBtn" style="position:absolute; top:10px; right:10px;">Close</button>
+    <h2>About Me</h2>
+    <p><.....................................................></p>
+  </div>
+</div>
+
+<!-- Remove inline styles from button-top and use the CSS class instead -->
+<div class="button-top" id="button-top" style="display:none;">
+  <button class="button" aria-label="Back to Top">
+    <svg class="svgIcon" viewBox="0 0 20 20">
+      <path d="M10 3v14M10 3l-7 7M10 3l7 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
   <script>
     let isRunning = false;
+
 
     function toggleNyanCat() {
       const nyanCat = document.getElementById('nyanCat');
@@ -154,41 +179,143 @@
       }
     }
 
-    function highlightContact() {
-    const contact = document.getElementById('contact');
-    contact.classList.add('highlight');
-    
-    // Remove highlight class after animation completes
-    setTimeout(() => {
-        contact.classList.remove('highlight');
-    }, 1500);
-}
+    // Navigation functionality
+    function navigateTo(section) {
+      // Remove active class from all nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Add active class to clicked nav item
+      event.target.classList.add('active');
+      
+      // Remove highlights from all sections
+      document.querySelectorAll('.card, .contact').forEach(element => {
+        element.classList.remove('highlighted');
+      });
+      
+      switch(section) {
+        case 'home':
+          // Scroll to top smoothly
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          break;
+          
+        case 'about':
+          // Highlight the card and scroll to it
+          const card = document.querySelector('.card');
+          card.classList.add('highlighted');
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Remove highlight after 3 seconds
+          setTimeout(() => {
+            card.classList.remove('highlighted');
+          }, 3000);
+          break;
+          
+        case 'contact':
+          // Highlight the contact section and scroll to it
+          const contact = document.querySelector('.contact');
+          contact.classList.add('highlighted');
+          contact.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Remove highlight after 3 seconds
+          setTimeout(() => {
+            contact.classList.remove('highlighted');
+          }, 3000);
+          break;
+          
+        case 'projects':
+          // For now, just show an alert since projects section doesn't exist yet
+          alert('Projects section coming soon! 🚀');
+          break;
+      }
+    }
 
-function scrollToContact() {
-  const contactSection = document.getElementById('contact');
-  contactSection.scrollIntoView({ behavior: 'smooth' });
-}
+    // Update active nav item based on scroll position
+    function updateActiveNavItem() {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Clear all active states
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      if (scrollPosition < windowHeight * 0.3) {
+        // Near top - Home is active
+        document.querySelector('.nav-item:nth-child(2)').classList.add('active');
+      } else if (scrollPosition < windowHeight * 0.7) {
+        // Middle area - About is active
+        document.querySelector('.nav-item:nth-child(3)').classList.add('active');
+      } else {
+        // Lower area - Contact is active
+        document.querySelector('.nav-item:nth-child(5)').classList.add('active');
+      }
+    }
 
-function highlightSkillTree() {
-    const skillTree = document.querySelector('.skilltree');
-    skillTree.classList.add('highlight');
-    
-    setTimeout(() => {
-        skillTree.classList.remove('highlight');
-    }, 1500);
-}
+    // Listen for scroll events to update active nav item
+    window.addEventListener('scroll', updateActiveNavItem);
 
-function scrollToSkillTree() {
-    const skillTreeSection = document.querySelector('.skilltree');
-    skillTreeSection.scrollIntoView({ behavior: 'smooth' });
-}
-  </script>
-  <script>
-  // Add this at the end of your body tag
-  if (window.location.hash === '#contact') {
-    window.history.replaceState({}, '', window.location.pathname);
+    // Card 3D effect
+    const card = document.querySelector('.card');
+    const coords = document.getElementById('mouse-hov');
+
+    card.addEventListener('mousemove', function(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+     
+      // Calculate rotation
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateY = ((x - centerX) / centerX) * 12; // max 12deg
+      const rotateX = -((y - centerY) / centerY) * 12; // max 12deg
+
+      card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', function() {
+      coords.textContent = '';
+      card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg)';
+    });
+
+    // Overlay functionality for .card
+  const cardElem = document.querySelector('.card');
+  const overlay = document.getElementById('overlay');
+  const closeBtn = document.getElementById('closeBtn');
+
+  if (cardElem && overlay && closeBtn) {
+    cardElem.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
   }
-</script>
+
+  // Back to Top button functionality
+  const backToTopBtn = document.getElementById("button-top");
+  const backToTopInnerBtn = backToTopBtn.querySelector(".button");
+
+  window.addEventListener("scroll", function() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  });
+
+  backToTopInnerBtn.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  </script>
 </body>
 
 </html>
