@@ -185,6 +185,7 @@
     .example-2 .icon-content {
       margin: 0 10px;
       position: relative;
+      cursor: none;
     }
 
     .example-2 .icon-content .tooltip {
@@ -202,12 +203,14 @@
       width: max-content;
       pointer-events: none;
       text-align: center;
+      cursor: none;
     }
 
     .example-2 .icon-content:hover .tooltip {
       opacity: 1;
       visibility: visible;
       top: -60px;
+      cursor: none;
     }
 
     .example-2 .icon-content a {
@@ -222,6 +225,7 @@
       color: #4d4d4d;
       background-color: #ffffff;
       transition: all 0.3s ease-in-out;
+      cursor: none;
     }
 
     .example-2 .icon-content a:hover {
@@ -744,4 +748,74 @@
             opacity: 1;
             bottom: unset;
             transition-duration: 0.3s;
+        }
+
+        /* Add to styles.css */
+
+        /* Custom Animated Cursor */
+        .animated-cursor {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #1a73e8, #fff);
+          position: fixed;
+          pointer-events: none;
+          z-index: 10000;
+          transform: translate(-50%, -50%);
+          display: none;
+          animation: bounce 1s infinite;
+        }
+
+        /* Blue Text Box beside cursor */
+        .cursor-text {
+          position: fixed;
+          pointer-events: none;
+          z-index: 10001;
+          display: none;
+          background: rgba(0, 0, 0, 0.9);
+          color: #1a73e8;
+          padding: 8px 12px;
+          border-radius: 6px;
+          font-family: 'Courier New', monospace;
+          font-size: 12px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border: 1px solid #1a73e8;
+          box-shadow: 0 0 10px rgba(26, 115, 232, 0.3);
+          animation: glitch 2s infinite;
+          white-space: nowrap;
+        }
+
+        /* Glitch animation */
+        @keyframes glitch {
+          0% { text-shadow: 0 0 5px #1a73e8; transform: translateX(0);}
+          10% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; transform: translateX(-1px);}
+          20% { text-shadow: 0 0 5px #1a73e8; transform: translateX(1px);}
+          30% { text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; transform: translateX(0);}
+          40% { text-shadow: 0 0 8px #1a73e8; transform: translateX(-1px);}
+          50% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; transform: translateX(1px);}
+          60% { text-shadow: 0 0 5px #1a73e8; transform: translateX(0);}
+          70% { text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; transform: translateX(-1px);}
+          80% { text-shadow: 0 0 10px #1a73e8; transform: translateX(1px);}
+          90% { text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; transform: translateX(0);}
+          100% { text-shadow: 0 0 5px #1a73e8; transform: translateX(0);}
+        }
+
+        /* Keyframes for bouncing animation */
+        @keyframes bounce {
+          0% { transform: translate(-50%, -50%) scale(1);}
+          50% { transform: translate(-50%, -60%) scale(1.2);}
+          100% { transform: translate(-50%, -50%) scale(1);}
+        }
+
+        /* Hide default cursor when hovering over the card */
+        .card:hover {
+          cursor: none;
+        }
+
+        /* Show custom cursor only when hovering over the card */
+        body.show-custom-cursor .animated-cursor,
+        body.show-custom-cursor .cursor-text {
+          display: block;
         }
