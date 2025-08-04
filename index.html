@@ -157,6 +157,10 @@
   </button>
 </div>
 
+<!-- Add these elements just before the closing </body> tag in index.html -->
+<div class="animated-cursor" id="animatedCursor"></div>
+<div class="cursor-text" id="cursorText">CLICK ME</div>
+
   <script>
     let isRunning = false;
 
@@ -315,6 +319,56 @@
   backToTopInnerBtn.addEventListener("click", function() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+
+  // Custom Animated Cursor for .card
+document.addEventListener('DOMContentLoaded', function() {
+  const cursor = document.getElementById('animatedCursor');
+  const cursorText = document.getElementById('cursorText');
+  const card = document.querySelector('.card');
+  const body = document.body;
+
+  // Glitchy text messages
+  const glitchMessages = [
+    'CLICK_ME'
+  ];
+  let messageIndex = 0;
+
+  // Move custom cursor and text
+  document.addEventListener('mousemove', (e) => {
+    if (body.classList.contains('show-custom-cursor')) {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+      cursorText.style.left = (mouseX + 25) + 'px';
+      cursorText.style.top = (mouseY - 10) + 'px';
+    }
+  });
+
+  // Show custom cursor when hovering over .card
+  card.addEventListener('mouseenter', () => {
+    body.classList.add('show-custom-cursor');
+    cursorText.textContent = glitchMessages[messageIndex];
+  });
+
+  // Hide custom cursor when leaving .card
+  card.addEventListener('mouseleave', () => {
+    body.classList.remove('show-custom-cursor');
+  });
+
+  // Hide cursor when mouse leaves window
+  document.addEventListener('mouseleave', () => {
+    body.classList.remove('show-custom-cursor');
+  });
+
+  // Change text periodically while hovering
+  setInterval(() => {
+    if (body.classList.contains('show-custom-cursor')) {
+      messageIndex = (messageIndex + 1) % glitchMessages.length;
+      cursorText.textContent = glitchMessages[messageIndex];
+    }
+  }, 1500);
+});
   </script>
 </body>
 
