@@ -819,3 +819,29 @@
         body.show-custom-cursor .cursor-text {
           display: block;
         }
+
+ .projectblockone {
+  height: 230px;
+  width: 129px;
+  background: rgb(31, 24, 24, 0.932);
+  top: 119vh;
+  left: 40vh;
+  position: relative;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  
+ }
+ 
+
+  .projectblocktwo {
+  height: 466px;
+  width: 890px;
+  background: rgba(31, 24, 24, 0.932);
+  top: 43vh;
+  left: 60vh;
+  position: relative;
+  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+ }
+
+
