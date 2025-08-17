@@ -10,7 +10,7 @@
 </head>
 
 <body
-  style="height: 1000px; background: linear-gradient(45deg, rgba(65, 89, 208, 1.000) 0.000%, rgba(200, 79, 192, 1.000) 50.000%, rgba(255, 205, 112, 1.000) 100.000%);">
+  style="height: 100%; background: linear-gradient(45deg, rgba(65, 89, 208, 1.000) 0.000%, rgba(200, 79, 192, 1.000) 50.000%, rgba(255, 205, 112, 1.000) 100.000%);">
   
   <!-- Section marker for Home -->
   <div id="home-section"></div>
@@ -24,6 +24,7 @@
       <li onclick="navigateTo('contact')" class="nav-item">Contact</li>
     </ul>
   </nav>
+ 
 
   <div class="glass">
     <div class="card" id="about-section">
@@ -143,30 +144,36 @@
       <div class="project-content">
         
   </div>
-
-  <!-- Add this overlay HTML just before the closing </body> tag -->
-<div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999;">
-  <div style="background:rgba(24, 21, 21, 0.897); padding:30px; border-radius:10px; width: 80vw; height: 40vw; position:relative;">
-    <button id="closeBtn" style="position:absolute; top:10px; right:10px;">Close</button>
-    <h2>About Me</h2>
-    <p><.....................................................></p>
+    </div>
+    <!-- END OF .glass CONTENT -->
   </div>
-</div>
 
-<!-- Remove inline styles from button-top and use the CSS class instead -->
-<div class="button-top" id="button-top" style="display:none;">
-  <button class="button" aria-label="Back to Top">
-    <svg class="svgIcon" viewBox="0 0 20 20">
-      <path d="M10 3v14M10 3l-7 7M10 3l7 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-    </svg>
-  </button>
-</div>
+  <!-- Move the footer OUTSIDE the .glass div, place it here -->
+  <div class="footer">
+   
+    <img src="pk.png" alt="Parth Kashelkar" class="pk">
+     <h1 class="footertxt">made with ❤️,for myself.</h1>
+  </div>
 
-<!-- Add these elements just before the closing </body> tag in index.html -->
-<div class="animated-cursor" id="animatedCursor"></div>
-<div class="cursor-text" id="cursorText">CLICK ME</div>
+  <!-- Overlay, button-top, animated-cursor, cursor-text, and scripts remain here -->
+  <div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:rgba(24, 21, 21, 0.897); padding:30px; border-radius:10px; width: 80vw; height: 40vw; position:relative;">
+      <button id="closeBtn" style="position:absolute; top:10px; right:10px;">Close</button>
+      <h2>About Me</h2>
+      <p><.....................................................></p>
+    </div>
+  </div>
 
+  <div class="button-top" id="button-top" style="display:none;">
+    <button class="button" aria-label="Back to Top">
+      <svg class="svgIcon" viewBox="0 0 20 20">
+        <path d="M10 3v14M10 3l-7 7M10 3l7 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
 
+  <div class="animated-cursor" id="animatedCursor"></div>
+  <div class="cursor-text" id="cursorText">CLICK ME</div>
 
   <script>
     let isRunning = false;
