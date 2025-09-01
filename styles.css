@@ -653,7 +653,7 @@ html {
   background: rgba(24, 21, 21, 0.897);
   padding: 30px;
   border-radius: 10px;
-  width: 80vw;
+  width: 10vw;
   height: 40vw;
   position: relative;
   display: flex;
@@ -754,9 +754,9 @@ html {
   transition-duration: 0.3s;
 }
 
-/* Add to styles.css */
 
-/* Custom Animated Cursor */
+
+/*  Animated Cursor */
 .animated-cursor {
   width: 20px;
   height: 20px;
@@ -864,12 +864,12 @@ html {
   }
 }
 
-/* Hide default cursor when hovering over the card */
+
 .card:hover {
   cursor: none;
 }
 
-/* Show custom cursor only when hovering over the card */
+
 body.show-custom-cursor .animated-cursor,
 body.show-custom-cursor .cursor-text {
   display: block;
@@ -911,7 +911,7 @@ body.show-custom-cursor .cursor-text {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px rgba(4, 5, 12, 0.37);
-  background-color: #202020;
+  background-color: rgb(31, 24, 24, 0.8);
   background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
   background-size: 30px 30px;
   background-position: -5px -5px
@@ -924,7 +924,7 @@ body.show-custom-cursor .cursor-text {
   margin-top: 0px;
   left: 0px;
   position: relative;
-  background-color: #202020;
+  background-color: #ff000000;
 
 }
 
@@ -938,5 +938,28 @@ body.show-custom-cursor .cursor-text {
   text-transform: uppercase;
   left : 200px;
   position: relative;
-  background-color: #202020;
+  background-color: rgba(31, 24, 24, 0);
+}
+
+.myinfo{
+  text-align: center;
+  width: 50%;
+  font-size: 20px;
+}
+
+.myinfogif {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  right: -150px;
+  top: 10%;
+  margin: 10px auto 0 auto;
+  display: flex;
+ 
+}
+
+.myinfogif img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
 }
