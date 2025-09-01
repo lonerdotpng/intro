@@ -152,15 +152,16 @@
   <div class="footer">
    
     <img src="pk.png" alt="Parth Kashelkar" class="pk">
-     <h1 class="footertxt">made with ❤️,for myself.</h1>
+     <h1 class="footertxt">made with ❤️(for myself).</h1>
   </div>
 
   <!-- Overlay, button-top, animated-cursor, cursor-text, and scripts remain here -->
   <div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999;">
-    <div style="background:rgba(24, 21, 21, 0.897); padding:30px; border-radius:10px; width: 80vw; height: 40vw; position:relative;">
+    <div style="background:rgba(24, 21, 21, 0.897); padding:30px; border-radius:10px; width: 60vw; height: 40vw; position:relative;">
       <button id="closeBtn" style="position:absolute; top:10px; right:10px;">Close</button>
       <h2>About Me</h2>
-      <p><.....................................................></p>
+      <div class="myinfo">I’m a <b>curious</b> person who enjoys figuring things out and making things simpler. I like learning, solving problems and finding creative ways to get things done. I am always open to improving and growing, both in my work and as a person.<br><br>(definitely not written by AI 🙄 )</div>
+      <div class="myinfogif"><img src="zen.gif"></div>
     </div>
   </div>
 
@@ -203,48 +204,55 @@
       document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
       });
-      
+
       // Add active class to clicked nav item
       event.target.classList.add('active');
-      
+
       // Remove highlights from all sections
-      document.querySelectorAll('.card, .contact').forEach(element => {
+      document.querySelectorAll('.card, .contact, .projectblocktwo').forEach(element => {
         element.classList.remove('highlighted');
       });
-      
+
       switch(section) {
         case 'home':
           // Scroll to top smoothly
           window.scrollTo({ top: 0, behavior: 'smooth' });
           break;
-          
+
         case 'about':
           // Highlight the card and scroll to it
           const card = document.querySelector('.card');
           card.classList.add('highlighted');
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          
+
           // Remove highlight after 3 seconds
           setTimeout(() => {
             card.classList.remove('highlighted');
           }, 3000);
           break;
-          
+
         case 'contact':
           // Highlight the contact section and scroll to it
           const contact = document.querySelector('.contact');
           contact.classList.add('highlighted');
           contact.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          
+
           // Remove highlight after 3 seconds
           setTimeout(() => {
             contact.classList.remove('highlighted');
           }, 3000);
           break;
-          
+
         case 'projects':
-          // For now, just show an alert since projects section doesn't exist yet
-          alert('Projects section coming soon! 🚀');
+          // Highlight the projects section and scroll to it
+          const projects = document.querySelector('.projectblocktwo');
+          projects.classList.add('highlighted');
+          projects.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Remove highlight after 3 seconds
+          setTimeout(() => {
+            projects.classList.remove('highlighted');
+          }, 3000);
           break;
       }
     }
