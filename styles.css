@@ -270,7 +270,6 @@ nav li:not(:first-child).active::before {
   background-color: #0088cc;
 }
 
-/* Updated .info card with expandable format */
 .info {
   background: rgba(0, 0, 0, 0.479);
   box-shadow: 0 8px 32px 0 rgba(4, 5, 12, 0.37);
@@ -481,14 +480,14 @@ nav li:not(:first-child).active::before {
   border-radius: 10px;
   padding: 15px;
   width: 150px;
-  height: 120px;
+  height: 150px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  bottom: 60px;
+  bottom:100px;
   margin-left: 20px;
   position: fixed;
 }
@@ -952,8 +951,8 @@ body.show-custom-cursor .cursor-text {
   height: 20px;
   position: relative;
   right: -150px;
-  top: 8%;
-  margin: 10px auto 0 auto;
+  bottom: 20%;
+  margin: 0px auto 0 auto;
   display: flex;
  
 }
@@ -968,4 +967,32 @@ mark {
   background-color: rgb(255, 2, 2); 
   color: black; 
   text-transform: uppercase;
+}
+.projectheading {
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background:  linear-gradient(45deg, #d3afa2, #b15145 30%, #92dafd 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  top: 10px;
+  position: relative;
+}
+
+.mailbutton {
+   display: inline-block;
+    width: calc(100% - 20px);
+    padding: 15px 10px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
