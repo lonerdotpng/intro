@@ -1,0 +1,18 @@
+{
+  "name": "portnew",
+  "version": "1.0.0",
+  "description": "portfolio",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+    "dependencies": {
+        "ejs": "^3.1.10",
+    "express": "^5.1.0"
+   
+  }
+}
