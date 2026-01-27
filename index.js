@@ -19,9 +19,7 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'portfolio' });
 });
 
-app.get('/:slug', (req, res) => {
-  res.status(404).render('404');
-});
+
 
 app.listen(port, () => {
   console.log(`local app listening on port ${port}`);
